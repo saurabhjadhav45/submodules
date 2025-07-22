@@ -1,0 +1,130 @@
+@import '../../utils/flex';
+@import '../../utils/main';
+/** small size*/
+$small-width: 45px;
+$small-height: calc($small-width / 2);
+$small-border-radius: calc($small-height/ 2);
+/** medium size*/
+$medium-width: 60px;
+$medium-height: calc($medium-width / 2);
+$medium-border-radius: calc($medium-height/ 2);
+/** large size*/
+$large-width: 75px;
+$large-height: calc($large-width / 2);
+$large-border-radius: calc($large-height/ 2);
+
+$sizes: (
+  small: 'small',
+  medium: 'medium',
+  large: 'large',
+);
+
+/** wrapper class*/
+.toggle-wrapper {
+  @include flex-item(column, center, center, '', '');
+  display: inline-flex;
+
+  .toggle-main {
+    @include flex-item(row, center, center, '', '');
+  }
+
+  .toggle {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    .toggle-input {
+      display: none;
+    }
+    @each $key, $val in $sizes {
+      .toggle-fill-#{$key} {
+        background: $gray-200;
+        transition: ease-in-out 0.2;
+        position: relative;
+        @if $key == 'small' {
+          width: $small-width;
+          height: $small-height;
+          @include rfs($small-border-radius, border-radius);
+        } @else if $key == 'medium' {
+          width: $medium-width;
+          height: $medium-height;
+          @include rfs($medium-border-radius, border-radius);
+        } @else if $key == 'large' {
+          width: $large-width;
+          height: $large-height;
+          @include rfs($large-border-radius, border-radius);
+        }
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          @if $key == 'small' {
+            width: $small-height;
+            height: $small-height;
+            @include rfs($small-border-radius, border-radius);
+          } @else if $key == 'medium' {
+            width: $medium-height;
+            height: $medium-height;
+            @include rfs($medium-border-radius, border-radius);
+          } @else if $key == 'large' {
+            width: $large-height;
+            height: $large-height;
+            @include rfs($large-border-radius, border-radius);
+          }
+          background: $white;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+          transition: transform 0.2;
+        }
+      }
+      .toggle-input:checked ~ .toggle-fill-#{$key} {
+        &::after {
+          @if $key == 'small' {
+            transform: translateX($small-height); //
+          } @else if $key == 'medium' {
+            transform: translateX($medium-height); //
+          } @else if $key == 'large' {
+            transform: translateX($large-height); //
+          }
+        }
+      }
+      .disabled-switch {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      ::after {
+        opacity: 0.9;
+      }
+    }
+    .top-label {
+      position: absolute;
+      top: -18px;
+      transform: translateX(50%);
+    }
+    .bottom-label {
+      position: absolute;
+      bottom: -18px;
+      transform: translateX(50%);
+    }
+    .end-label {
+      position: absolute;
+      right: -32px;
+      bottom: 0px;
+      transform: translateY(-50%);
+    }
+    .start-label {
+      position: absolute;
+      left: -32px;
+      bottom: 6px;
+    }
+  }
+}
+
+@each $key, $val in $colors {
+  .toggle-input:checked ~ .switch-#{$key} {
+    background-color: $val;
+  }
+}
+
+.disabled-txt-color{
+  color: $gray-300;
+}

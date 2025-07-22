@@ -1,0 +1,92 @@
+@import '../../utils/main.scss';
+
+/* Custom properties */
+$tooltip-color: $gray-700;
+$tip-height-width: 10px;
+
+@mixin tooltip($className) {
+  .#{$className} {
+    width: 200px;
+    position: absolute;
+    @include rfs(4px, border-radius);
+    left: 51%;
+    transform: translateX(-50%);
+    color: $light;
+    z-index: 2;
+
+    .content-tag {
+      background: $tooltip-color;
+      text-align: left;
+      @include padding(10px 15px);
+      max-width: 100%;
+      display: inline-block;
+    }
+
+    &.tooltip-top {
+      @include flex-item(row, center, _, _);
+      bottom: 22px;
+      top: auto;
+    }
+
+    &.tooltip-right {
+      display: flex;
+      left: calc(100% + 5px);
+      top: 50%;
+      transform: translateX(0) translateY(-50%);
+    }
+
+    &.tooltip-bottom {
+      @include flex-item(row, center, _, _);
+      top: 110%;
+      bottom: auto;
+    }
+
+    &.tooltip-left {
+      @include flex-item(row-reverse, _, _, _);
+
+      left: auto;
+      right: calc(100% + 5px);
+      top: 50%;
+      transform: translateX(0) translateY(-50%);
+    }
+  }
+}
+.display-inline {
+  display: inline;
+}
+.tooltip-wrapper {
+  display: inline;
+  position: relative;
+  @include tooltip('tooltip-tip');
+  @include tooltip('tooltip-arrow');
+}
+
+.tip {
+  width: $tip-height-width;
+  height: $tip-height-width;
+  background: $tooltip-color;
+  position: absolute;
+  left: 50%;
+  transform: rotate(45deg);
+}
+
+.tip-bottom {
+  top: 90%;
+  left: 47%;
+}
+
+.tip-top {
+  bottom: 90%;
+  left: 46%;
+}
+
+.tip-left {
+  top: 35%;
+  left: -9px;
+}
+
+.tip-right {
+  left: auto;
+  right: -10px;
+  top: 35%;
+}

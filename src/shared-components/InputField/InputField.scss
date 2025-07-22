@@ -1,0 +1,131 @@
+@import '../../utils/main.scss';
+@import '../../utils/flex';
+
+button {
+  background-color: $white;
+  border: none;
+  outline: none;
+}
+.input-container {
+  @include padding(8px 0 8px 0);
+
+  .form-input {
+    @include flex-item(row, '', flex-end, '', '');
+    border: 1px solid $gray-200;
+    @include rfs(4px, border-radius);
+    width: 100%;
+    min-height: 40px;
+    box-sizing: border-box;
+    @include padding(5px);
+    cursor: text;
+  }
+
+  .input-group {
+    width: 100%;
+    position: relative;
+    @include flex-item(_, none, center, none, 0);
+    .password-icon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translate(0, -50%);
+      cursor: pointer;
+      height: auto;
+      width: 16px;
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+  .input-group label {
+    color: $gray-700;
+    font-weight: 400;
+    line-height: 20px;
+    position: absolute;
+    pointer-events: none;
+    left: 10px;
+    top: -11px;
+    background-color: $white;
+    @include flex-item(_, _, center, _, _);
+    span {
+      @include padding(0 5px 0 5px);
+    }
+
+    .label-star::after {
+      content: '*';
+      color: $danger;
+      font-size: 20px;
+      position: relative;
+      top: 2px;
+      left: 3px;
+    }
+  }
+
+  input {
+    height: 100%;
+    @include padding(0 10px 2px);
+    width: 100%;
+    border: none;
+    &:not(:disabled)::placeholder {
+      color: $black;
+    }
+    &:disabled {
+      background-color: $white;
+      color: $gray-400;
+      &::placeholder {
+        color: $gray-400;
+      }
+    }
+  }
+  input:focus {
+    outline: none;
+  }
+  ::placeholder {
+    transition: all 0.2s ease;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    @include margin(0);
+  }
+
+  /* Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  .password-view {
+    &::after {
+      content: '';
+      position: absolute;
+      cursor: pointer;
+      height: 2px;
+      @include rfs(4px, border-radius);
+      opacity: 0.7;
+      right: 19px;
+      top: 50%;
+      transform: translate(0, -50%) rotate(45deg);
+      width: 18px;
+      background: $dark;
+    }
+  }
+  .disabled {
+    background-color: $white;
+    color: colors('light');
+    border: 1px solid $gray-400;
+    &:hover {
+      border: 1px solid $gray-400;
+    }
+    label {
+      color: $gray-400;
+    }
+  }
+
+  .error-message {
+    color: $danger;
+    @include padding(10px 0 0 0);
+    @include font-size(12px);
+  }
+  .invalid {
+    border: 1px solid $danger;
+  }
+}

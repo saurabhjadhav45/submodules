@@ -1,0 +1,80 @@
+@import '../../utils/main.scss';
+.table-wrapper {
+  width: 100%;
+  .input-box {
+    width: 100%;
+    @include flex-item(_, flex-start, center, _, _);
+    .search-bar {
+      width: 250px;
+    }
+  }
+  .main-table {
+    font-family: $font-family-name;
+    border-collapse: collapse;
+    width: 100%;
+
+    .table-heading {
+      text-align: left;
+      @include padding(18px);
+      border-bottom: 3px solid $gray-300;
+      border-right: 1px solid $gray-300;
+      background: $gray-100;
+
+      &:last-child {
+        border-right: none;
+      }
+      svg {
+        fill: $gray-500;
+      }
+      .table-heading-cell {
+        @include flex-item(row, space-between, center, '', '');
+        .table-heading-text {
+          display: inline-block;
+        }
+        .sort-icon {
+          @include flex-item(column, center, center, '', '');
+          @include margin-left(10px);
+          height: 20px;
+          .up-sort-icon {
+            transform: rotate(180deg);
+          }
+          .active-sort {
+            svg {
+              fill: $primary;
+            }
+          }
+        }
+      }
+      .checkbox_container {
+        @include padding-left(0px);
+      }
+    }
+    .table-sort-heading {
+      cursor: pointer;
+    }
+    .table-data {
+      text-align: left;
+      @include padding(18px);
+      border-bottom: 1px solid $gray-300;
+    }
+    .checkbox-row {
+      @include margin-left(20px);
+    }
+    .checkbox-column {
+      width: 60px;
+      background: $gray-100;
+      border-bottom: 3px solid $gray-300;
+      .table-heading-column-cell {
+        @include flex-item(row, center, center, '', '');
+        @include margin-left(20px);
+      }
+    }
+  }
+}
+.table-border {
+  border: 1px solid $gray-300;
+  th,
+  td {
+    border: 1px solid $gray-300;
+  }
+}

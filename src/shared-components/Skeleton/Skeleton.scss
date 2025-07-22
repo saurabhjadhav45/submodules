@@ -1,0 +1,56 @@
+@import '../../utils/main.scss';
+
+.skeleton {
+  @include margin(10px 0);
+  border-radius: 0.25rem;
+  background: linear-gradient(
+    120deg,
+    $defaultColor 30%,
+    $gray-400 38%,
+    $gray-400 40%,
+    $defaultColor 48%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  animation: none;
+}
+
+.animation_wave {
+  animation: load 2s infinite;
+}
+
+.animation_none {
+  animation: none;
+}
+
+.text {
+  width: 100%;
+  height: 0.75rem;
+}
+
+.title {
+  width: 50%;
+  height: 1.25rem;
+  @include margin-bottom(15px);
+}
+
+.avatar {
+  width: 6.25rem;
+  height: 6.25rem;
+  border-radius: 50%;
+}
+
+@keyframes load {
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.thumbnail {
+  width: 6.25rem;
+  height: 6.25rem;
+}
+.rectangle {
+  width: 12.5rem;
+  height: 4.375rem;
+}

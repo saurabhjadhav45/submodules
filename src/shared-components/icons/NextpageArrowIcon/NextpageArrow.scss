@@ -1,0 +1,21 @@
+@import '../../../utils/main.scss';
+
+@function colors($value: 'white') {
+  @return map-get($colors, $value);
+}
+
+@each $key, $val in $colors {
+  .contained {
+    &[class^='#{$key}'] {
+      stroke: $white;
+      fill: $white;
+    }
+  }
+  .outlined,
+  .text {
+    &[class^='#{$key}'] {
+      stroke: $val;
+      fill: $val;
+    }
+  }
+}

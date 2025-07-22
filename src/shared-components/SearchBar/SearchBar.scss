@@ -1,0 +1,69 @@
+@import '../../utils/main.scss';
+@import '../../utils/flex';
+button {
+  border: none;
+}
+.searchbar-container .input-container {
+  @include padding(0);
+  .form-input {
+    border: none;
+  }
+  height: 100%;
+  button {
+    @include padding(6px);
+  }
+}
+.searchbar-container .searchbar-main {
+  height: 100%;
+  @include flex-item(_, _, _, _, _);
+  .search-input {
+    width: 100%;
+  }
+}
+
+.searchbar-container {
+  width: 100%;
+  &:hover {
+    border: 1px solid $darkgrey;
+    .clear-n-search-icon .search-icon-right {
+      border-left: 1px solid $darkgrey;
+    }
+  }
+  position: relative;
+  border: 1px solid $defaultColor;
+  @include margin(5px);
+  @include rfs(5px, border-radius);
+
+  .right,
+  .left {
+    height: 100%;
+    border: 1px solid;
+  }
+  .clear-n-search-icon {
+    @include rfs(4px, border-radius);
+    @include flex-item(row, center, center, _, _);
+    cursor: auto;
+    background: white;
+    & div {
+      @include flex-item(row, _, center, _, _);
+      height: 100%;
+      @include padding(0 10px 0px 10px);
+    }
+    .search-icon-right {
+      border-left: 1px solid $defaultColor;
+    }
+    .clear-btn {
+      background-color: $white;
+      @include margin-right(10px);
+    }
+  }
+
+  .search-icon-left {
+    @include flex-item(_, center, center, _, _);
+    @include padding(0 10px);
+    border-right: 1px solid $defaultColor;
+    .search-img {
+      @include flex-item(_, _, _, _, _);
+    }
+  }
+}

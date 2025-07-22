@@ -1,0 +1,125 @@
+@import '../../utils/main.scss';
+
+$chip-small-padding-vertical: 4px;
+$chip-small-font-size: $font-size-xxsm;
+
+@function chip-padding-modifier($chip-size) {
+  $padding-vertical: $chip-small-padding-vertical;
+  $padding-horizontal: $chip-small-padding-vertical * 2;
+
+  @if $chip-size==medium {
+    $padding-vertical: $chip-small-padding-vertical * 0.5;
+  }
+
+  @else if $chip-size==small {
+    $padding-vertical: $chip-small-padding-vertical;
+  }
+
+  @return $padding-vertical $padding-horizontal;
+}
+
+@function chip-font-size-modifier($chip-size) {
+  $font-size: $chip-small-font-size;
+
+  @if $chip-size==medium {
+    $font-size: $chip-small-font-size * 4;
+  }
+
+  @else if $chip-size==small {
+    $font-size: $chip-small-font-size * 3.5;
+  }
+
+  @return $font-size;
+}
+
+@mixin chip-size-controls($size) {
+  padding: chip-padding-modifier($size);
+  font-size: chip-font-size-modifier($size);
+}
+
+// below class for disable the chip
+.disable {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.close-icon {
+  border: none !important;
+  border-radius: 50%;
+  padding-top: 3px;
+
+  svg {
+    padding: 1px 0 0 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: $gray-300;
+    cursor: pointer;
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.base-chip {
+  border-radius: 20px;
+  @include flex-item(row, space-between, center, nowrap, 12px);
+
+  @each $key,
+  $val in $colors {
+    &[class^='#{$key}'] {
+      background-color: color('#{$key}');
+      color: color('light');
+    }
+  }
+
+  &[class~='small'] {
+    @include chip-size-controls('small');
+  }
+
+  &[class~='medium'] {
+    @include chip-size-controls('medium');
+  }
+}
+
+.left-icon {
+  &-small>svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &-medium>svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/**
+    dynamic outline classes generator
+    e.g .outline-primary, .outline-secondary etc.
+*/
+@each $key,
+$val in $colors {
+  .outline-#{$key} {
+    color: $val;
+    border: 1px solid $val;
+    background-color: color('light');
+  }
+}
+
+@each $key,
+$val in $colors {
+  .outline-#{$key}>svg {
+    background-color: color('#{$key}');
+    fill: color('light');
+  }
+}
+
+@each $key,
+$val in $colors {
+  .#{$key}>svg {
+    fill: color('#{$key}');
+  }
+}

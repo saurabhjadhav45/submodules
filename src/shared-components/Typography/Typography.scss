@@ -1,0 +1,80 @@
+@use 'sass:math';
+@import '../../utils/main.scss';
+
+$typo-size: 16px;
+
+$typo-variant: (
+  h1: $typo-size * 6,
+  h2: $typo-size * 5,
+  h3: $typo-size * 4,
+  h4: $typo-size * 3,
+  h5: $typo-size * 2,
+  h6: math.div($typo-size, 1),
+  body1: $typo-size,
+  body2: math.div($typo-size, 1.25),
+  subtitle1: $typo-size,
+  subtitle2: math.div($typo-size, 1.25),
+  button: math.div($typo-size, 1.15),
+  p: $typo-size,
+  caption: math.div($typo-size, 1.35),
+);
+
+$alignment: left, right, justify, inherit, center;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+// wrapper
+.typography-wrapper {
+  width: 100%;
+}
+
+// margin at bottom
+.gutter-bottom {
+  @include margin-bottom(5px);
+}
+
+// according variant size changes
+@each $key, $val in $typo-variant {
+  .typography-variant-#{$key} {
+    @include font-size($val);
+    line-height: 1.5;
+    @if ($key == 'button') {
+      text-transform: uppercase;
+    }
+    @if ($key == 'subtitle1') {
+      line-height: 1.75;
+    }
+    @if ($key == 'subtitle2') {
+      line-height: 1.65;
+    }
+  }
+}
+
+// alignment apply
+@each $val in $alignment {
+  .typography-#{$val} {
+    @if ($val == center) {
+      @include flex-item(row, center, center, _, _);
+    } @else if($val == left) {
+      @include flex-item(row, flex-start, _, _, _);
+    } @else if($val == right) {
+      @include flex-item(row, flex-end, _, _, _);
+    }
+    text-align: $val;
+  }
+}
+
+.typography-nowrap {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

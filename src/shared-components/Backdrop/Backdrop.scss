@@ -1,0 +1,20 @@
+@import '../../utils/main.scss';
+
+.backdrop-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: map-get($z-index, 'backdrop');
+  background-color: $gray-800;
+  opacity: 0.5;
+  @include flex-item();
+  min-height: 100px;
+  width: 100%;
+  margin: 0;
+}
+
+.backdrop-nonactive {
+  display: none;
+}

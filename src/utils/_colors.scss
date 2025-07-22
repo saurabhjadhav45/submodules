@@ -1,0 +1,64 @@
+$white: #ffffff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000000;
+$darkgrey: #00000073;
+
+// theme colors
+$primary: #0d6efd;
+$secondary: $gray-600;
+$success: #198754;
+$danger: #dc3545;
+$info: #0dcaf0;
+$warning: #ffc107;
+$defaultColor: #e2e2e2; // given by border
+$dark: $gray-900;
+$light: $gray-100;
+$alert: #f8b226;
+$unknown: #384e6c;
+$premium: #002762;
+$tertiary: #002662;
+
+//color palete map
+$colors: (
+  'primary': $primary,
+  'secondary': $secondary,
+  'danger': $danger,
+  'info': $info,
+  'success': $success,
+  'warning': $warning,
+  'gray': $gray-500,
+  'dark': $dark,
+  'light': $light,
+  'white': $white,
+  'black': $black,
+  'alert': $alert,
+  'unknown': $unknown,
+  'premium': $premium,
+  'tertiary':$tertiary
+);
+
+@function color($val) {
+  @return map-get($colors, $val);
+}
+
+@each $key, $val in $colors {
+  .text-#{$key} {
+    color: $val;
+  }
+  .text-hover-#{$key} {
+    &:hover {
+      color: $val;
+    }
+  }
+  .bg-#{$key} {
+    background-color: $val;
+  }
+}

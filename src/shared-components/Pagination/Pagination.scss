@@ -1,0 +1,117 @@
+@import '../../utils/main.scss';
+
+.pagination-container {
+  @include flex-item(_, _, center, _, 14px);
+  list-style-type: none;
+  .base-btn[class~='small'] {
+    @include font-size(12px);
+  }
+
+  li {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pagination-item {
+    @include padding(0 12px);
+    height: 32px;
+    text-align: center;
+    @include margin(auto 4px);
+    color: $black;
+    @include flex-item(_, _, center, _, _);
+    box-sizing: border-box;
+    line-height: 1.43;
+    @include font-size(13px);
+    min-width: 32px;
+    background: none;
+    border: none;
+
+    &.dots:hover {
+      background-color: transparent;
+      cursor: default;
+    }
+    &:hover {
+      background-color: $gray-400;
+      cursor: pointer;
+    }
+
+    &.selected {
+      background-color: $primary;
+      color: $white;
+    }
+
+    .arrow {
+      &::before {
+        position: relative;
+        content: '';
+        display: inline-block;
+        width: 0.4em;
+        height: 0.4em;
+        border-right: 0.12em solid $black;
+        border-top: 0.12em solid $black;
+      }
+
+      &.left {
+        transform: rotate(-135deg) translate(-50%);
+      }
+
+      &.right {
+        transform: rotate(45deg);
+      }
+    }
+
+    &.disabled {
+      pointer-events: none;
+
+      .arrow::before {
+        border-right: 0.12em solid $black;
+        border-top: 0.12em solid $black;
+      }
+
+      &:hover {
+        background-color: transparent;
+        cursor: default;
+      }
+
+      svg {
+        path {
+          fill: $gray-400;
+          stroke: $gray-400;
+        }
+      }
+    }
+  }
+  .pagination-data {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    .input-container {
+      padding: 0;
+      .form-input {
+        min-height: 28px;
+      }
+      .pr-1 {
+        padding: 0;
+        max-width: 48px;
+        min-width: 40px;
+
+        input {
+          padding: 4px 8px;
+          height: 24px;
+          min-width: 20px;
+          text-align: center;
+        }
+      }
+    }
+    .page-of {
+      margin-right: 8px;
+    }
+  }
+}
+
+.base-btn {
+  @include padding(5px);
+}

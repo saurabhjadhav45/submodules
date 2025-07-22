@@ -1,0 +1,109 @@
+@import '../../utils/colors.scss';
+@import '../../utils/main.scss';
+
+.label {
+  @include margin-right(6px);
+}
+.form-check {
+  display: flex;
+}
+
+input[type='checkbox' i] {
+  border: none;
+  background-color: none;
+}
+.checkbox-container {
+  display: block;
+  position: relative;
+  @include padding-left(28px);
+  @include margin-bottom(12px);
+  cursor: pointer;
+  font-size: 18px;
+  font-family: $font-family-name;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmarks {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: $gray-300;
+}
+
+$checkboxWidths: (
+  'small': 16,
+  'medium': 18,
+  'large': 21,
+);
+@each $key, $val in $checkboxWidths {
+  .checkbox-#{$key} {
+    width: $val * 1px;
+    height: $val * 1px;
+  }
+}
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkmarks {
+  background-color: $gray-500;
+}
+
+/* When the checkbox is checked, add a blue background */
+
+.checkbox-container input:checked ~ .checkmarks {
+  background-color: $primary;
+}
+
+/* Create the checkmarks/indicator (hidden when not checked) */
+.checkmarks:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmarks when checked */
+.checkbox-container input:checked ~ .checkmarks:after {
+  display: block;
+}
+
+/* Style the checkmarks/indicator */
+.checkbox-container .checkmarks:after {
+  left: 5px;
+  top: 1px;
+  width: 3px;
+  height: 8px;
+  border: solid $white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* Style the checkmarks/indicator */
+.checkbox-container .checkbox-large:after {
+  left: 7px;
+  top: 4px;
+  width: 3px;
+  height: 8px;
+  border: solid $white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.checkbox-size {
+  display: flex;
+}

@@ -1,0 +1,99 @@
+@import '../../utils/main.scss';
+.stepper {
+  height: 100%;
+
+  .stepper-horizontal {
+    @include flex-item(_, _, flex-start, _, _);
+    .step-item {
+      @include padding-left(8px);
+      @include padding-right(8px);
+      flex: 1;
+      position: relative;
+
+      .stepper-connector {
+        flex: 1 1 auto;
+        position: absolute;
+        top: 12px;
+        left: calc(-50% + 20px);
+        right: calc(50% + 20px);
+        .connector-line {
+          display: block;
+          border-top: 1px solid $gray-300;
+        }
+      }
+
+      .step-item-inside {
+        @include flex-item(column, _, center, _, _);
+        .step-label {
+          text-align: center;
+          @include margin-top(16px);
+          @include font-size(14px);
+          display: block;
+          width: 100%;
+          color: rgba(0, 0, 0, 0.6);
+        }
+      }
+    }
+  }
+  /** common classes */
+  .active {
+    color: $primary;
+  }
+  .disable {
+    color: rgba(0, 0, 0, 0.38);
+  }
+  .active-label {
+    color: rgba(0, 0, 0, 0.87) !important;
+  }
+  .svg {
+    user-select: none;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    fill: currentColor;
+    flex-shrink: 0;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    @include font-size(24px);
+    display: block;
+    transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  }
+
+  .step-txt {
+    fill: $white;
+    @include font-size(12px);
+  }
+
+  /** vertical stepper */
+  .stepper-vertical {
+    height: 100%;
+    @include flex-item(column, _, _, _, _);
+    &-container {
+      @include flex-item(column, _, _, _, _);
+      .vertical-step-item {
+        @include flex-item(_, _, center, _, _);
+        text-align: left;
+        @include padding(8px 0);
+
+        .item-container {
+          @include flex-item();
+          @include padding-right(8px);
+        }
+        .step-label {
+          width: 100%;
+          color: rgba(0, 0, 0, 0.5);
+          @include font-size(14px);
+        }
+      }
+    }
+    .vertical-connector {
+      flex: 1 1 auto;
+      @include margin-left(12px);
+      &-line {
+        display: block;
+        border-left: 1px solid $gray-300;
+        min-height: 24px;
+        height: 100%;
+      }
+    }
+  }
+}

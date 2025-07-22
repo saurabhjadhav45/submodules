@@ -1,0 +1,18 @@
+$linkDecoration: (
+  default-link: none,
+  always: underline,
+  hover: underline,
+);
+@each $key, $val in $linkDecoration {
+  .#{$key} {
+    @if ($key != 'hover') {
+      text-decoration: $val;
+    } 
+    @else {
+      &:hover{
+        text-decoration: $val;
+      }
+    }
+  }
+}
+

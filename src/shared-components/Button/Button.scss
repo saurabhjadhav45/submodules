@@ -1,0 +1,166 @@
+@import '../../utils/flex';
+@import '../../utils/main.scss';
+@import '../../utils/_colors.scss';
+
+$btn-small-padding-vertical: 4px;
+$btn-small-font-size: 4px;
+
+/**
+    color function returns specific color
+*/
+@function colors($value: 'white') {
+  @return map-get($colors, $value);
+}
+
+@function button-padding-modifier($button-size) {
+  $padding-vertical: $btn-small-padding-vertical;
+  $padding-horizontal: $btn-small-padding-vertical + 6;
+  @if $button-size == large {
+    $padding-vertical: $btn-small-padding-vertical + 4;
+    $padding-horizontal: $btn-small-padding-vertical + 18;
+  } @else if $button-size == medium {
+    $padding-vertical: $btn-small-padding-vertical + 2;
+    $padding-horizontal: $btn-small-padding-vertical + 12;
+  } @else if $button-size == small {
+    $padding-vertical: $btn-small-padding-vertical;
+  } @else {
+    @error "Unknown size #{$button-size}.";
+  }
+  @return $padding-vertical $padding-horizontal;
+}
+
+@function button-font-size-modifier($button-size) {
+  $font-size: $btn-small-font-size;
+  @if $button-size == large {
+    $font-size: $btn-small-font-size * 6;
+  } @else if $button-size == medium {
+    $font-size: $btn-small-font-size * 5;
+  } @else if $button-size == small {
+    $font-size: $btn-small-font-size * 4;
+  } @else {
+    @error "Unknown size #{$button-size}.";
+  }
+  @return $font-size;
+}
+@mixin button-size-controls($size) {
+  padding: button-padding-modifier($size);
+  font-size: (button-font-size-modifier($size));
+}
+
+.base-btn {
+  border: none;
+  @include rfs(4px, border-radius);
+  @include flex-item(_, center, center, _, _);
+  @include margin(8px);
+
+  &[class^='contained'] {
+    background-color: colors('primary');
+    color: colors('light');
+  }
+
+  &[class^='outlined'] {
+    background-color: colors('light');
+    color: colors('primary');
+    border: 1px solid 'primary';
+  }
+
+  &[class~='small'] {
+    @include button-size-controls('small');
+  }
+  &[class~='medium'] {
+    @include button-size-controls('medium');
+  }
+  &[class~='large'] {
+    @include button-size-controls('large');
+  }
+  &[class~='disabled'] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  /** when button is not disabled cursor is pointer */
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+  /** when button is not disabled hover class and focus classes are applied */
+  &:not(:disabled):not(.light):hover {
+    opacity: 0.5;
+  }
+  &:not(:disabled):focus {
+    opacity: 0.8;
+  }
+}
+
+/**
+    dynamic classes generator with it's variant
+    e.g .outlined .primary,  .text .secondary etc.
+*/
+@each $key, $val in $colors {
+  .contained {
+    &[class^='#{$key}'] {
+      outline: none;
+      border: none;
+      background-color: $val;
+      color: colors('light');
+    }
+  }
+  .text {
+    &[class^='#{$key}'] {
+      width: 80px;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      color: $val;
+    }
+  }
+  .outlined {
+    &[class^='#{$key}'] {
+      color: $val;
+      border: 1px solid $val;
+      background-color: colors('light');
+    }
+  }
+}
+
+.btn-children {
+  @include flex-item(_, _, center, _, 5px);
+}
+.btn-loader {
+  width: 30px;
+}
+
+/*** rounded border buttons */
+.rounded-small {
+  @include rfs(20px, border-radius);
+}
+.rounded-medium {
+  @include rfs(36px, border-radius);
+}
+.rounded-large {
+  @include rfs(52px, border-radius);
+}
+
+$icon-button-size: (
+  small: 'small',
+  medium: 'medium',
+  large: 'large',
+);
+
+@each $key, $val in $icon-button-size {
+  .icon-btn-#{$key} {
+    padding: 16px !important;
+    box-sizing: border-box;
+    @if #{$key} == 'small' {
+      width: 25px;
+      height: 25px;
+      font-size: 12px !important;
+    } @else if #{$key} == 'medium' {
+      width: 60px;
+      height: 60px;
+    } @else if #{$key} == 'large' {
+      width: 70px;
+      height: 70px;
+    }
+    @include button-size-controls(#{$key});
+    border-radius: 50% !important;
+  }
+}

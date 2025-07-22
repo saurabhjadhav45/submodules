@@ -1,0 +1,67 @@
+@import '../../utils/main.scss';
+
+// vertical tab
+.tab-vertical {
+  @include flex-item(row, _, center, _, 30px);
+  .tab {
+    @include flex-item(column, _, _, _, 5px);
+  }
+}
+.tab-container {
+  width: 100%;
+  @include font-size($font-size-md);
+  font-family: $font-family-name;
+  .tab {
+    &-button {
+      background-color: $white;
+      @include padding(10px 20px);
+      outline: none;
+      cursor: pointer;
+      border: 0;
+      .button-content-topIcon {
+        @include flex-item(column, _, _, _, 5px);
+      }
+      .button-content-leftIcon {
+        @include flex-item(row, center, center, _, 8px);
+      }
+      .button-content-rightIcon {
+        @include flex-item(row-reverse, center, center, _, 8px);
+      }
+      .button-content-bottomIcon {
+        @include flex-item(column-reverse, center, center, _, 5px);
+      }
+    }
+    &-active {
+      position: relative;
+    }
+
+    &-button:disabled {
+      cursor: not-allowed;
+      color: $gray-400;
+    }
+  }
+  .tab-border-horizontal {
+    @include margin-top(1);
+    border-bottom: 1px solid $gray-500;
+  }
+  .tab-border-vertical {
+    border-right: 1px solid $gray-500;
+  }
+  .tab-center {
+    @include flex-item();
+  }
+}
+
+@each $key, $val in $colors {
+  .tab-#{$key} {
+    color: $val;
+  }
+  .tab-container .tab-horizontal-#{$key} {
+    @include margin-bottom(-1px);
+    border-bottom: 2px solid $val;
+  }
+  .tab-vertical-#{$key} {
+    @include margin-right(-1px);
+    border-right: 2px solid $val;
+  }
+}

@@ -1,0 +1,17 @@
+// rfs import
+@import 'rfs/scss.scss';
+
+// variables and functions
+@import './variables';
+
+// base and layout
+@import './breakpoints';
+@import './flex';
+@import './grid';
+@import './sizes';
+
+// colors
+@import './colors';
+
+// utils(margin,padding,opacity)
+@import './utilities';

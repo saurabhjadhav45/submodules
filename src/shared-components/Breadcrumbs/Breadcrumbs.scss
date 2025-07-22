@@ -1,0 +1,41 @@
+@import '../../utils/main.scss';
+
+.breadcrumb-container {
+  width: 100%;
+  @include flex-item(row, _, center, _, _);
+  @include padding(10px);
+  @include margin(10px);
+
+  .breadcrumb-content {
+    @include flex-item(row, _, _, _, _);
+
+    .breadcrumb-text-wrapper {
+      @include flex-item(row, _, _, _, 5px);
+
+      .breadcrumb-icon {
+        @include flex-item();
+      }
+    }
+
+    .breadcrumb-inactive {
+      color: inherit;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .breadcrumb-active {
+      color: inherit;
+      cursor: default;
+    }
+
+    .breadcrumb-separator {
+      @include margin-left(8px);
+      @include margin-right(8px);
+      color: $gray-600;
+    }
+  }
+  .absent-router {
+    pointer-events: none;
+  }
+}

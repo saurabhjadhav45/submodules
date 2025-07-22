@@ -1,0 +1,51 @@
+@import '../../utils/main.scss';
+.dashed {
+  border-style: dashed;
+}
+
+.dotted {
+  border-style: dotted;
+}
+
+.vertical {
+  height: 100vh;
+  width: 0.0625rem;
+  @include margin(10px);
+}
+
+.vertical::after {
+  top: 50%;
+  background: $white;
+  display: flex;
+  justify-content: center;
+  right: 4px;
+}
+
+hr {
+  overflow: visible;
+  text-align: attr(data-align);
+  height: 0px;
+}
+
+hr:after {
+  content: attr(data-content);
+  position: relative;
+  top: -9px;
+  @include padding(0px 4px)
+}
+
+.divider-text:after {
+  background: $white;
+}
+
+$dividerAlignment:(
+  center,
+  right,
+  left
+);
+
+@each $key in $dividerAlignment {
+  .divider-#{$key} {
+  text-align: $key;
+  }
+}

@@ -1,0 +1,29 @@
+@import '../../utils/main.scss';
+
+.pro-cir {
+  position: relative;
+  &-svg {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    transform: rotate(270deg);
+
+    .svg-circle-bg {
+      fill: none;
+      stroke: $gray-400;
+    }
+
+    .svg-circle {
+      fill: none;
+      stroke-linecap: round;
+    }
+  }
+  .progress-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    @include font-size(20px);
+    font-weight: bold;
+  }
+}

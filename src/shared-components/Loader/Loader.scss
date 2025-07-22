@@ -1,0 +1,76 @@
+@import '../../utils/main.scss';
+
+.main-loader-wrapper {
+  @include flex-item();
+  width: 100%;
+  margin: 0;
+  background: transparent;
+  .gif {
+    @include flex-item();
+    top: 115%;
+    font-family: $font-family-name;
+    font-size: 1rem;
+    flex-direction: column;
+  }
+  .loader {
+    @include flex-item();
+    &-content {
+      top: 115%;
+      font-family: $font-family-name;
+      font-size: 1rem;
+    }
+
+    .spinner {
+      fill: none;
+      animation: spin 2s linear both infinite;
+      width: 100%;
+      circle {
+        stroke: $primary;
+        stroke-width: 3px;
+        stroke-linecap: round;
+        animation: stroke-dash 1.5s ease-in-out both infinite;
+      }
+    }
+
+    @keyframes stroke-dash {
+      0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+      }
+
+      50% {
+        stroke-dasharray: 90, 200;
+        stroke-dashoffset: -35px;
+      }
+
+      100% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: -125px;
+      }
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0);
+      }
+
+      to {
+        transform: rotate(1turn);
+      }
+    }
+
+    @keyframes scale-bounce {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.2);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  }
+}

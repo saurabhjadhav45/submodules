@@ -1,0 +1,98 @@
+@import '../../utils/main.scss';
+
+.base-badge {
+  max-width: fit-content;
+  max-height: fit-content;
+  position: relative;
+
+  // Below style only for svg if available instead of content
+  .icon-type>svg {
+    height: 14px;
+    width: 14px;
+  }
+
+  // set the color using loop
+  @each $key,
+  $val in $colors {
+    .#{$key} {
+      background-color: color('#{$key}');
+      color: color('light');
+    }
+  }
+
+  & svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .standard-type {
+    position: absolute;
+    width: fit-content;
+    @include rfs(8px, border-radius);
+    @include font-size(11px);
+    @include padding(2px 5px);
+    color: $white;
+  }
+
+  .dot-type {
+    position: absolute;
+    @include rfs(100%, border-radius);
+    @include padding(5px);
+    height: 5px;
+    width: 5px;
+  }
+}
+
+.standard {
+
+  // for top left
+  & .top_left {
+    bottom: 65%;
+    right: 45%;
+  }
+
+  // for bottom left
+  & .bottom_left {
+    top: 50%;
+    right: 45%;
+  }
+
+  // for top right
+  & .top_right {
+    bottom: 65%;
+    left: 45%;
+  }
+
+  // for bottom right 
+  & .bottom_right {
+    top: 50%;
+    left: 45%;
+  }
+}
+
+.dot {
+
+  // for top left 
+  & .top_left {
+    top: -10%;
+    right: 88%;
+  }
+
+  // for bottom left
+  & .bottom_left {
+    right: 85%;
+    bottom: 0%;
+  }
+
+  // for top right
+  & .top_right {
+    top: -10%;
+    left: 90%;
+  }
+
+  // for bottom right
+  & .bottom_right {
+    left: 90%;
+    bottom: 2%;
+  }
+}

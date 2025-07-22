@@ -1,0 +1,110 @@
+@import '../../utils/colors.scss';
+@import '../../utils/main.scss';
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: $gray-500;
+  position: fixed;
+  height: 100vh;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: flex;
+  color: $black;
+  @include padding(14px);
+  text-decoration: none;
+  font-family: $font-family-name;
+  align-items: center;
+}
+
+.sidebar_menu {
+  font-weight: 500;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: $primary;
+  color: $white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: $gray-400;
+  color: $black;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  @include margin-left(200px);
+  @include padding(1px 16px);
+  height: 1000px;
+}
+
+ul {
+  @include padding-left(0px);
+}
+
+.submenu-item {
+  @include padding-left(30px);
+}
+
+.menu-img {
+  @include margin-right(10px);
+}
+
+.submenu-img {
+  @include margin-right(10px);
+}
+
+.sidebar_items {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: $gray-500;
+  /* position: fixed; */
+  /* height: 100vh; */
+  overflow: auto;
+}
+
+.sidebar_items a:hover:not(.active) {
+  background-color: $gray-400;
+  color: $white;
+}
+
+.sidebar_items a {
+  display: flex;
+  color: $black;
+  @include padding(16px);
+  text-decoration: none;
+}
+.muenuItem_sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: $gray-500;
+  /* position: fixed; */
+  /* height: 100vh; */
+  // overflow: auto;
+}
+
+.sidebar_items a.active {
+  background-color: $primary;
+  color: $white;
+}
+
+.sidebar_items a {
+  display: flex;
+  align-items: center;
+  color: $black;
+  @include padding(16px);
+  text-decoration: none;
+  font-family: $font-family-name;
+}
+
+.sidebar_items ul {
+  @include margin-top(0px);
+  @include margin-bottom(0px);
+}

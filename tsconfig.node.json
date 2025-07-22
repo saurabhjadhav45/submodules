@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "node16", // Enables .mjs/.cjs resolution per Node.js 16+ behavior; needed for native ESM support
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "strict": true, // Enables all strict type-checking options for safer code
+    "forceConsistentCasingInFileNames": true // Prevents OS-specific file name issues
+  },
+  "include": ["*.ts", "**/*.ts"]
+}

@@ -1,0 +1,115 @@
+@import '../../utils/main.scss';
+
+@mixin toast-close-btn($width, $height) {
+  width: $width;
+  height: $height;
+  border-radius: 6px;
+  @include flex-item();
+}
+
+.toast-container {
+  width: max-content;
+  font-family: $font-family-name;
+  position: absolute;
+  @include flex-item(_, center, flex-start, nowrap, 8px);
+  @include padding(15px);
+  border-radius: $base-border-radius;
+
+  .toast-text-container {
+    width: 190px;
+    @include flex-item(column, flex-start, flex-start, wrap, 5px);
+  }
+
+  .close-btn {
+    @include toast-close-btn(12px, 15px);
+    cursor: pointer;
+    background: inherit;
+
+    .filled-close {
+      margin-top: -2px;
+    }
+  }
+
+  .close-btn-small {
+    @include toast-close-btn(10px, 15px);
+  }
+}
+
+$border-colors: (
+  success: $success,
+  info: $info,
+  warning: $warning,
+  danger: $danger,
+);
+
+@each $key, $val in $border-colors {
+  .border-#{$key} {
+    border: 1px solid $val;
+  }
+}
+
+@mixin toast-animation($dir1, $dir2, $animate) {
+  #{$dir1}: 12px;
+  #{$dir2}: 12px;
+  animation: $animate 0.7s;
+}
+
+.top-right {
+  @include toast-animation(top, right, toast-in-right);
+}
+
+.bottom-right {
+  @include toast-animation(bottom, right, toast-in-right);
+}
+
+.top-left {
+  @include toast-animation(top, left, toast-in-left);
+}
+
+.bottom-left {
+  @include toast-animation(bottom, left, toast-in-left);
+}
+
+.top {
+  @include toast-animation(top, _, toast-top);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.static {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+@keyframes toast-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    translate: translateX(0);
+  }
+}
+
+@keyframes toast-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    translate: translateX(0);
+  }
+}
+
+@keyframes toast-top {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    translate: translateY(0);
+  }
+}
+
+.icon-white {
+  color: $white;
+}

@@ -1,0 +1,19 @@
+[
+    {
+      "theme": {
+        "baseColors": {
+          "primaryColor": "#212644",
+          "secondaryColor": "#48B2EB",
+          "tertiaryColor": "#75787B",
+          "white": "#ffffff",
+          "black": "#000000"
+        },
+        "typography": {
+          "fontFamily": "Lato"
+        }
+      },
+      "appConfig": {
+        "tenantName": "dg_bank_fe"
+      }
+    }
+  ]

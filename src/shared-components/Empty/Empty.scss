@@ -1,0 +1,6 @@
+@import '../../utils/main.scss';
+
+.empty-wrapper {
+  width: 100%;
+  @include flex-item(column, center, center, _, 10px);
+}
